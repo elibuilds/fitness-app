@@ -11,34 +11,30 @@ export const WorkoutCard = ({ workout, onPress }) => {
 
   return (
     <TouchableOpacity style={styles.card} onPress={onPress} activeOpacity={0.85}>
-      <Image source={{ uri: workout.imageUrl }} style={styles.image} />
-      
-      {/* Favourite Button */}
-      <TouchableOpacity 
-        style={styles.favouriteButton} 
-        onPress={toggleFavourite}
-        hitSlop={{ top: 10, bottom: 10, left: 10, right: 10 }}
-      >
-        <Ionicons 
-          name={isFavourite ? 'heart' : 'heart-outline'} 
-          size={22} 
-          color={isFavourite ? '#FF5252' : '#FFFFFF'} 
-        />
-      </TouchableOpacity>
-
       <View style={styles.infoContainer}>
-        <Text style={styles.category}>{workout.category.toUpperCase()}</Text>
         <Text style={styles.title} numberOfLines={1}>{workout.title}</Text>
+
+        <TouchableOpacity 
+          style={styles.favouriteButton} 
+          onPress={toggleFavourite}
+          hitSlop={{ top: 10, bottom: 10, left: 10, right: 10 }}
+        >
+          <Ionicons 
+            name={isFavourite ? 'heart' : 'heart-outline'} 
+            size={25} 
+            color={isFavourite ? '#FF5252' : '#573939'} 
+          />
+        </TouchableOpacity>
         
-        <View style={styles.metaRow}>
-          <View style={styles.metaItem}>
+        <View style={styles.textRow}>
+          <View style={styles.textItem}>
             <Ionicons name="time-outline" size={14} color="#666666" />
-            <Text style={styles.metaText}>{workout.duration}</Text>
+            <Text style={styles.subText}>{workout.duration}</Text>
           </View>
-          <Text style={styles.metaDot}>•</Text>
-          <View style={styles.metaItem}>
+          <Text style={styles.textDot}>•</Text>
+          <View style={styles.textItem}>
             <Ionicons name="flame-outline" size={14} color="#FF6B6B" />
-            <Text style={styles.metaText}>{workout.calories}</Text>
+            <Text style={styles.subText}>{workout.calories}</Text>
           </View>
         </View>
       </View>
@@ -52,55 +48,38 @@ const styles = StyleSheet.create({
     borderRadius: 16,
     marginBottom: 16,
     overflow: 'hidden',
-    shadowColor: '#000',
-    shadowOffset: { width: 0, height: 2 },
-    shadowOpacity: 0.08,
-    shadowRadius: 8,
     elevation: 3,
-  },
-  image: {
-    width: '100%',
-    height: 160,
-    backgroundColor: '#E1E4E8',
   },
   favouriteButton: {
     position: 'absolute',
-    top: 12,
-    right: 12,
-    backgroundColor: 'rgba(0,0,0,0.4)',
+    top: 20,
+    right: 12, 
     borderRadius: 20,
     padding: 8,
   },
   infoContainer: {
     padding: 16,
   },
-  category: {
-    fontSize: 11,
-    fontWeight: '700',
-    color: '#6C5CE7',
-    marginBottom: 4,
-    letterSpacing: 0.8,
-  },
   title: {
-    fontSize: 18,
-    fontWeight: '700',
+    fontSize: 17,
+    fontWeight: '600',
     color: '#2D3436',
     marginBottom: 8,
   },
-  metaRow: {
+  textRow: {
     flexDirection: 'row',
     alignItems: 'center',
   },
-  metaItem: {
+  textItem: {
     flexDirection: 'row',
     alignItems: 'center',
   },
-  metaText: {
+  subText: {
     fontSize: 13,
     color: '#636E72',
     marginLeft: 4,
   },
-  metaDot: {
+  textDot: {
     marginHorizontal: 8,
     color: '#B2BEC3',
   },

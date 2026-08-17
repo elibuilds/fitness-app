@@ -1,4 +1,4 @@
-import { View, Text, FlatList } from 'react-native'
+import { View, Text, FlatList, StyleSheet } from 'react-native'
 import React from 'react'
 import { useNavigation } from '@react-navigation/native'
 import { WorkoutCard } from '../components/WorkoutCard'
@@ -41,19 +41,47 @@ const WorkoutListScreen = () => {
     const navigation = useNavigation()
 
   return (
-    <View>
-        <FlatList
+    <View style={styles.main}>
+      <View style={styles.topContainer}>
+        <Text style={{fontSize: 25, fontWeight: '400'}}>Your Workout List</Text>
+      </View>
+      <View style={styles.listContainer}>
+         <FlatList
             data={workouts}
             keyExtractor={(item) => item.id}
             renderItem={({item}) => (
                 <WorkoutCard workout={item} 
-                    onPress={() => navigation.navigate('Details', )}
+                    onPress={() => navigation.navigate('Details', {workout: item})}
                 />
             )}
         />
-        <Text>WorkoutListScreen</Text>
+      </View>
     </View>
   )
 }
 
 export default WorkoutListScreen
+
+const styles = StyleSheet.create({
+  main: { 
+    height: '100%',
+    marginBottom: 150,
+    backgroundColor: '#fd98a7'
+
+  },
+  listContainer: {
+    backgroundColor: '#f8f8f8',
+    borderTopLeftRadius: 30,
+    borderTopRightRadius: 30,
+    paddingHorizontal: 20,
+    paddingTop: 40,
+    height: '100%' 
+  },
+  topContainer: {
+    paddingTop: 50,
+    paddingBottom: 50,
+    alignItems: 'center',
+    
+  }
+
+})
