@@ -17,7 +17,7 @@ const WorkoutDetailsScreen = ({route}) => {
       <View>
         <View style={styles.hero}>
           <Text style={styles.title}>{workout.title}</Text>
-          <Image source={{ uri: workout.imageUrl }} style={styles.heroImage} />
+          <Image source={workout.imageUrl} style={styles.heroImage} />
         </View> 
         
 
